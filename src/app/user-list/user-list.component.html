@@ -1,27 +1,81 @@
-<h1>Users</h1>
-<div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-        <span class="sr-only" id="loading">Loading...</span>
-    </div>
+<div class=" border border-class">
+    <h2 class="h2-class">User List</h2>
 </div>
-<table class="table" id='tab'>
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">occupation</th>
-            <th scope="col">Email</th>
-            <th scope="col">Bio</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{ user.name }}</td>
-            <td>{{ user.occupation }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.bio }}</td>
-            <td> <button (click)="userDetails(user.id)" class='btn btn-info' data-toggle="modal"
-                    data-target="#myModal">Details</button> </td>
-        </tr>
-    </tbody>
-</table>
+
+
+
+<button mat-raised-button class="btn btn-info " style="float: right; " (click)="addUser()">Add</button>
+<!-- style="float: right; margin:10px; -->
+<div class="col-md-3  " style="margin:10px ">
+    <form>
+        <input type="text" [(ngModel)]="email" class="form-control " (input)="search()" name="email"
+            placeholder="search email">
+
+    </form>
+</div>
+
+<span></span>
+
+<div>
+
+
+    <mat-table class="users-table mat-elevation-z8" [dataSource]="users" matSort>
+
+        <!-- <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let user ">{{user.id}}</mat-cell>
+        </ng-container> -->
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let user ">{{user.name}}</mat-cell>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let user ">{{user.email}}</mat-cell>
+        </ng-container>
+
+        <!-- bio Occupation -->
+        <ng-container matColumnDef="occupation">
+            <mat-header-cell *matHeaderCellDef>Occupation</mat-header-cell>
+            <mat-cell *matCellDef="let user ">{{user.occupation}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <button mat-raised-button class="btn btn-info" (click)="userDetails(user.id)">Details</button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionu">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <button mat-raised-button class="btn btn-info " (click)="editUser(user.id)">Update</button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actiond">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <button mat-raised-button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-paginator [length]="10" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+        </mat-paginator>
+
+
+
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <h3>Loading.....</h3>
+    </div>
+
+
+</div>

@@ -1,7 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
-h1{
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 150%;
-  text-decoration-color: blueviolet;
+.mat-column-action {
+  flex: 0 0 10%;
+}
+.mat-column-actionu {
+  flex: 0 0 10%;
+}
+.mat-column-actiond {
+  flex: 0 0 10%;
+}
+ .mat-header-cell {
+  background-color:navy ;
+  color: white;
+}
+h2 {
+
+  text-align: center;
+}
+.border-class{
+
+  background-color: rgb(208, 216, 224);
+}
+.h2-class{
+  font-style: italic;
+  font-size: 40px;
+  font-weight: 900;
+  color: navy;
+}
+.tp-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.tp-margin {
+  margin: 0 10px;
 }
